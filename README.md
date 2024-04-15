@@ -1,6 +1,6 @@
-# My Maritime Single Window
+# Anton Maritime Single Window
 
-This project is a small example piece of software known as "My Maritime Single Window", inspired by the European Maritime Single Window initiative.
+This project is a small example piece of software known as "Anton Maritime Single Window", inspired by the European Maritime Single Window initiative.
 
 ## Overview
 
