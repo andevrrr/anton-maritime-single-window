@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [portCalls, setPortCalls] = useState([]);
+
+  useEffect(() => {
+    fetch("https://meri.digitraffic.fi/api/port-call/v1/port-calls")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setPortCalls(data.portCalls || []);
+        console.log(`There are ${data.portCalls.length} portcalls.`);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch port calls:", error);
+      });
+  }, []);
+
+  return <div>There are {portCalls.length} portcalls.</div>;
 }
 
 export default App;
