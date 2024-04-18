@@ -24,7 +24,7 @@ Make sure Docker is installed and running on your machine before executing these
 1. Clone the repository and navigate into the cloned repository: `cd <yourpath>`
 2. Build the Docker image from the Dockerfile: `docker build -t <app_name> .`
 
-3. Run the Docker container: `docker run -p <yourport>:3000 <app_name>`
+3. Run the Docker container: `docker run -p <yourport>:80 <app_name>`
 
 4. The application (displays message "There are xxx portcalls.") should now be running and accessible in your browser at `http://localhost:<yourport>`. And the message appears in the browser's console as well.
 
