@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
+import React, { useEffect, useState } from 'react';
+import { initiateSocketConnection, disconnectSocket, subscribeToUpdates } from './socketServer';
 
 function App() {
-  const [portCalls, setPortCalls] = useState([]);
+    const [notifications, setNotifications] = useState([]);
 
-  useEffect(() => {
-    fetch("https://meri.digitraffic.fi/api/port-call/v1/port-calls")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setPortCalls(data.portCalls || []);
-        console.log(`There are ${data.portCalls.length} portcalls.`);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch port calls:", error);
-      });
-  }, []);
+    useEffect(() => {
+        initiateSocketConnection();
 
-  return <div>There are {portCalls.length} portcalls.</div>;
+        subscribeToUpdates((newMessage) => {
+            setNotifications(prevNotifications => [...prevNotifications, newMessage]);
+        });
+
+        return () => {
+            disconnectSocket();
+        };
+    }, []);
+
+    return (
+        <div>
+            <h1>Notifications</h1>
+            {notifications.map((note, index) => (
+                <div key={index}>{note}</div>
+            ))}
+        </div>
+    );
 }
 
 export default App;

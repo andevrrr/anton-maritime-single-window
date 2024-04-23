@@ -14,7 +14,9 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "fs": "^0.0.1-security",
-    "path": "^0.12.7"
+    "node-schedule": "^2.1.1",
+    "path": "^0.12.7",
+    "socket.io": "^4.7.5"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
