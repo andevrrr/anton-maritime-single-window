@@ -11,6 +11,11 @@ export default function PortETA({ portCalls }) {
       width: 150,
     },
     {
+      field: "radioCallSign",
+      headerName: "Identification",
+      width: 150,
+    },
+    {
       field: "nextPort",
       headerName: "Next Port",
       width: 150,
@@ -68,6 +73,7 @@ export default function PortETA({ portCalls }) {
 
     return {
       id: portCall.portCallId,
+      radioCallSign: portCall.radioCallSign,
       vesselName: portCall.vesselName,
       nextPort: portCall.nextPort,
       ata: ataStr,
